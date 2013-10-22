@@ -896,7 +896,7 @@
 								. htmlspecialchars($tag_body) . "</tt><br />\n";
 						}
 
-						$this->Internal_UpdateParamsForMissingEndTag(@$token[BBCODE_STACK_TAG]);
+						$this->Internal_UpdateParamsForMissingEndTag($token[BBCODE_STACK_TAG]);
 						$tag_output = $this->DoTag(BBCODE_OUTPUT, $name,
 							@$token[BBCODE_STACK_TAG]['_default'], @$token[BBCODE_STACK_TAG], $tag_body);
 							
