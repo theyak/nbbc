@@ -95,6 +95,10 @@
 			// PCRE regex-syntax extensions, so don't even try to modify them unless you
 			// know how things like (?!) and (?:) and (?=) work.  We use the /x modifier
 			// here to make this a *lot* more legible and debuggable.
+			
+			// 2013-11-20: Remove PCRE_EXTENDED (http://php.net/manual/en/reference.pcre.pattern.modifiers.php)
+			//  flag which cause weird errors sometimes. For example, the string
+			//  $string = '[url=https://coursecatalog.harvard.edu/icb/icb.do?abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd[/url]';
 			$this->pat_main = "/( "
 				// Match tags, as long as they do not start with [-- or [' or [!-- or [rem or [[.
 				// Tags may contain "quoted" or 'quoted' sections that may contain [ or ] characters.
@@ -127,7 +131,7 @@
 				. "| [\\x00-\\x09\\x0B-\\x0C\\x0E-\\x20]+(?=[\\x0D\\x0A{$b}]|-----|$)"
 				. "| (?<=[\\x0D\\x0A{$e}]|-----|^)[\\x00-\\x09\\x0B-\\x0C\\x0E-\\x20]+"
 
-				. " )/Dx";
+				. " )/D";
 
 			$this->input = preg_split($this->pat_main, $string, -1, PREG_SPLIT_DELIM_CAPTURE);
 
@@ -409,9 +413,7 @@
 		// it down into its components and return them as an array.
 		function Internal_DecodeTag($tag) {
 
-			if ($this->debug) {
-				print "<b>Lexer::InternalDecodeTag:</b> input: " . htmlspecialchars($tag) . "<br />\n";
-			}
+			BBCode_Debugger::debug( "<b>Lexer::InternalDecodeTag:</b> input: " . htmlspecialchars($tag) . "<br />\n" );
 
 			// Create the initial result object.
 			$result = Array('_tag' => $tag, '_endtag' => '', '_name' => '',
@@ -574,14 +576,9 @@
 			// Add the parameter list as a member of the associative array.
 			$result['_params'] = $params;
 
-			if ($this->debug) {
-				// In debugging modes, output the tag as we collected it.
-				print "<b>Lexer::InternalDecodeTag:</b> output: ";
-				ob_start();
-				print_r($result);
-				$output = ob_get_clean();
-				print htmlspecialchars($output) . "<br />\n";
-			}
+			// In debugging modes, output the tag as we collected it.
+			BBCode_Debugger::debug( "<b>Lexer::InternalDecodeTag:</b> output: " );
+			BBCode_Debugger::debug(  htmlspecialchars( print_r( $result, true ) ) . "<br />\n" );
 
 			// Save the resulting parameters, and return the whole shebang.
 			return $result;
