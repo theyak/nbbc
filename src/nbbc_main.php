@@ -83,6 +83,44 @@
 	define("BBCODE_STACK_TAG", 2);		// Stack node: Tag contents (array)
 	define("BBCODE_STACK_CLASS", 3);	// Stack node: Classname
 
+	class BBCode_Debugger {
+		public static $level = 0;
+		
+		public static $debug = 1;
+		public static $info = 2;
+		public static $warning = 3;
+		public static $error = 4;
+		
+		public static function log( $level, $string )
+		{
+			if ( static::$debug && $level >= static::$level )
+			{
+				file_put_contents( "nbbc.log", $string, FILE_APPEND );
+				echo $string;
+			}
+		}
+		
+		public static function debug( $string )
+		{
+			static::log( static::$debug, $string );
+		}
+		
+		public static function info( $string )
+		{
+			static::log( static::$info, $string );
+		}
+		
+		public static function warning( $string )
+		{
+			static::log( static::$warning, $string );
+		}
+		
+		public static function error( $string )
+		{
+			static::log( static::$error, $string );
+		}
+	}
+	
 	//-----------------------------------------------------------------------------
 	//  This profiler class helps us to easily detect performance bottlenecks.
 	//  We leave it out of the high-speed compressed version of NBBC for
