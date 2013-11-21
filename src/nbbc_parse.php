@@ -537,7 +537,7 @@
 			$regex[] = ")(?![\\w])/";
 			$this->smiley_regex = implode("", $regex);
 
-			BBCode_Debugger::debug( "<b>Internal_RebuildSmileys:</b> regex: <tt>" . htmlspecialchars($regex) . "</tt><br>\n" );
+			BBCode_Debugger::debug( "<b>Internal_RebuildSmileys:</b> regex: <tt>" . htmlspecialchars($this->smiley_regex) . "</tt><br>\n" );
 		}
 
 		// Search through the input for URLs, or things that are URL-like.  We search
