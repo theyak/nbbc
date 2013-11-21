@@ -52,24 +52,24 @@
 	//-----------------------------------------------------------------------------
 
 	class BBCodeLexer {
-		var $token;			// Return token type:  One of the BBCODE_* constants.
-		var $text;			// Actual exact, original text of token.
-		var $tag;			// If token is a tag, this is the decoded array version.
+		public $token;			// Return token type:  One of the BBCODE_* constants.
+		public $text;			// Actual exact, original text of token.
+		public $tag;			// If token is a tag, this is the decoded array version.
 		
-		var $state;			// Next state of the lexer's state machine: text, or tag/ws/nl
-		var $input;			// The input string, split into an array of tokens.
-		var $ptr;			// Read pointer into the input array.
-		var $unget;			// Whether to "unget" the last token.
+		public $state;			// Next state of the lexer's state machine: text, or tag/ws/nl
+		public $input;			// The input string, split into an array of tokens.
+		public $ptr;			// Read pointer into the input array.
+		public $unget;			// Whether to "unget" the last token.
 		
-		var $verbatim;		// In verbatim mode, we return all input, unparsed, including comments.
-		var $debug;			// In debug mode, we dump decoded tags when we find them.
+		public $verbatim;		// In verbatim mode, we return all input, unparsed, including comments.
+		public $debug;			// In debug mode, we dump decoded tags when we find them.
 
-		var $tagmarker;		// Which kind of tag marker we're using:  "[", "<", "(", or "{"
-		var $end_tagmarker;	// The ending tag marker:  "]", ">", "(", or "{"
-		var $pat_main;		// Main tag-matching pattern.
-		var $pat_comment;	// Pattern for matching comments.
-		var $pat_comment2;	// Pattern for matching comments.
-		var $pat_wiki;		// Pattern for matching wiki-links.
+		public $tagmarker;		// Which kind of tag marker we're using:  "[", "<", "(", or "{"
+		public $end_tagmarker;	// The ending tag marker:  "]", ">", "(", or "{"
+		public $pat_main;		// Main tag-matching pattern.
+		public $pat_comment;	// Pattern for matching comments.
+		public $pat_comment2;	// Pattern for matching comments.
+		public $pat_wiki;		// Pattern for matching wiki-links.
 
 		function BBCodeLexer($string, $tagmarker = '[') {
 			// First thing we do is to split the input string into tuples of
@@ -96,9 +96,11 @@
 			// know how things like (?!) and (?:) and (?=) work.  We use the /x modifier
 			// here to make this a *lot* more legible and debuggable.
 			
-			// 2013-11-20: Remove PCRE_EXTENDED (http://php.net/manual/en/reference.pcre.pattern.modifiers.php)
-			//  flag which cause weird errors sometimes. For example, the string
-			//  $string = '[url=https://coursecatalog.harvard.edu/icb/icb.do?abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd[/url]';
+			// Is PHP crashing? Are you on Windows? Did you trace the crash to here?
+			// Add ThreadStackSize 8388608 to the <IfModule mpm_winnt_module> section
+			// of your conf\extra\httpd-mpm.conf file.
+			// More info, see:
+			// http://stackoverflow.com/questions/5058845/how-do-i-increase-the-stack-size-for-apache-running-under-windows-7
 			$this->pat_main = "/( "
 				// Match tags, as long as they do not start with [-- or [' or [!-- or [rem or [[.
 				// Tags may contain "quoted" or 'quoted' sections that may contain [ or ] characters.
@@ -131,7 +133,7 @@
 				. "| [\\x00-\\x09\\x0B-\\x0C\\x0E-\\x20]+(?=[\\x0D\\x0A{$b}]|-----|$)"
 				. "| (?<=[\\x0D\\x0A{$e}]|-----|^)[\\x00-\\x09\\x0B-\\x0C\\x0E-\\x20]+"
 
-				. " )/D";
+				. " )/Dx";
 
 			$this->input = preg_split($this->pat_main, $string, -1, PREG_SPLIT_DELIM_CAPTURE);
 
@@ -584,5 +586,3 @@
 			return $result;
 		}
 	}
-
-?>
