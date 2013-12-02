@@ -1327,7 +1327,7 @@
 					return true;
 				}
 
-				$result = null;
+				$result = true;
 				if ( isset( $tag_rule[ 'mode' ] ) )
 				{
 					switch (@$tag_rule['mode']) {
@@ -1897,7 +1897,7 @@
 			$start_tag_params = $start_tag_node[BBCODE_STACK_TAG];
 			$this->Internal_ComputeCurrentClass();
 
-			if ( isset( $this->tag_rukes[ $tag_name ] ) && isset( $this->tag_rules[ $tag_name ][ 'before_tag' ] ) )
+			if ( isset( $this->tag_rules[ $tag_name ] ) && isset( $this->tag_rules[ $tag_name ][ 'before_tag' ] ) )
 			{
 				$this->Internal_CleanupWSByPoppingStack($this->tag_rules[$tag_name]['before_tag'], $this->stack);
 			}
@@ -1909,7 +1909,7 @@
 			$start_tag_params['_hasend'] = true;
 			$output = $this->DoTag(BBCODE_OUTPUT, $tag_name, @$start_tag_params['_default'],
 				$start_tag_params, $contents);
-			if ( isset( $this->tag_rukes[ $tag_name ] ) && isset( $this->tag_rules[ $tag_name ][ 'after_endtag' ] ) )
+			if ( isset( $this->tag_rules[ $tag_name ] ) && isset( $this->tag_rules[ $tag_name ][ 'after_endtag' ] ) )
 			{
 				$this->Internal_CleanupWSByEatingInput(@$this->tag_rules[$tag_name]['after_endtag']);
 			}
@@ -2200,10 +2200,6 @@
 
 			$BBCode_Profiler->End('_Parse');
 
-			//$BBCode_Profiler->DumpAllGroups();
-
 			return $result;
 		}
 	}
-
-?>
