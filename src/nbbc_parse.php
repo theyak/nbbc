@@ -73,7 +73,7 @@
 //  to both yield slightly higher performance than their alternative solutions,
 //  even if they're a little stranger to read.
 //  
-//  Apr 02, 2014 Add Maximum number of smilies with SetMaxSmilies()
+//  Apr 02, 2014 Add Maximum number of smilies with SetMaxSmileys()
 //
 //-----------------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ class BBCode
 	public $pre_trim;  // How to trim the whitespace at the start of the input.
 	public $post_trim;  // How to trim the whitespace at the end of the input.
 	public $debug;   // Enable debugging mode
-	public $max_smilies; // Maximum numbe of smilies that can be used in parse
+	public $max_smileys; // Maximum numbe of smileys that can be used in parse
 
 	//-----------------------------------------------------------------------------
 	// Constructor.
@@ -152,7 +152,7 @@ class BBCode
 		$this->url_pattern = '<a href="{$url/h}">{$text/h}</a>';
 		$this->url_targetable = false;
 		$this->url_target = false;
-		$this->max_smilies = -1;
+		$this->max_smileys = -1;
 	}
 
 	//-----------------------------------------------------------------------------
@@ -524,14 +524,18 @@ class BBCode
 		return $this->enable_smileys;
 	}
 	
-	function SetMaxSmilies( $count )
+	function SetMaxSmileys( $count )
 	{
-		$this->max_smilies = (int) $count;
+		$this->max_smileys = (int) $count;
+		if ( $this->max_smileys < -1 ) 
+		{
+			$this->max_smileys = -1;
+		}
 	}
 	
-	function GetMaxSmilies()
+	function GetMaxSmileys()
 	{
-		return $this->max_smilies;
+		return $this->max_smileys;
 	}
 
 
@@ -797,7 +801,7 @@ class BBCode
 							$this->smiley_info[ $token ] = $info;
 						}
 						$alt = htmlspecialchars( $token );
-						if ( $smiley_count < $this->max_smilies || $this->max_smilies < 0 )
+						if ( $smiley_count < $this->max_smileys || $this->max_smileys < 0 )
 						{
 							$output .= "<img src=\"" . htmlspecialchars( $this->smiley_url . '/' . $this->smileys[ $token ] )
 								. "\" width=\"{$info[ 0 ]}\" height=\"{$info[ 1 ]}\""
