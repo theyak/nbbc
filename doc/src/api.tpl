@@ -1,4 +1,3 @@
-
 <p>Section IV of the manual completely documents the public methods of the <tt>BBCode</tt> class,
 which are listed below in conceptual groupings and in alphabetical order.  All member
 variables of the <tt>BBCode</tt> class are private and should not be touched; likewise,
@@ -91,6 +90,8 @@ documented here.</p>
 	<li><a href="api_smiley.html#ref_parser_GetDefaultSmileyURL">BBCode::GetDefaultSmileyURL</a></li>
 	<li><a href="api_smiley.html#ref_parser_SetEnableSmileys">BBCode::SetEnableSmileys</a></li>
 	<li><a href="api_smiley.html#ref_parser_GetEnableSmileys">BBCode::GetEnableSmileys</a></li>
+	<li><a href="api_smiley.html#ref_parser_SetMaxSmileys">BBCode::SetMaxSmileys</a></li>
+	<li><a href="api_smiley.html#ref_parser_GetMaxSmileys">BBCode::GetMaxSmileys</a></li>
 	</ul>
 </li>
 <li><b><a href="api_repl.html" style="color:#000;">Replaced Item Functions:</a></b>
