@@ -1,4 +1,3 @@
-
 <a name="ref_parser_AddSmiley"></a>
 <div class='api'>
 	<div class='api_head'>void <b>BBCode::AddSmiley</b> ( string $<tt>name</tt> , string $<tt>image</tt> )</div>
@@ -202,3 +201,27 @@
 	<div class='api_info'><b>Return values:</b>  Returns <tt>true</tt> or <tt>false</tt>, depending
 		on whether smileys are being converted to images.</div>
 </div>
+
+<a name="ref_parser_SetMaxSmileys"></a>
+<div class='api'>
+	<div class='api_head'>void <b>BBCode::SetMaxSmileys</b> ( int $<tt>count</tt> )</div>
+	<div class='api_descr'>This function sets the maximum number of smileys that may be used in a single
+		parsed string.</div>
+	<div class='api_info'><b>Parameters:</b>
+		<ul class='api_params'>
+		<li><tt><i>count</i></tt>:  The maximum number of smileys that may be used in a parsed string.
+			Set to <tt>-1</tt> to make unlimited, which is the default.</li>
+		</ul>
+	</div>
+</div>
+
+<a name="ref_parser_GetMaxSmileys"></a>
+<div class='api'>
+	<div class='api_head'>int <b>BBCode::GetMaxSmileys</b> ( )</div>
+	<div class='api_descr'>This function returns the current maximum number of smileys
+		that may be parsed in a single parse.</div>
+	<div class='api_info'><b>Return values:</b>  Returns the maximum number of smilies per parsed string. 
+		<tt>-1</tt> indicates an unlimited number of smileys.
+	</div>
+</div>
+
