@@ -72,7 +72,7 @@
 //  and we use output buffering rather than string concatenation.  These seem
 //  to both yield slightly higher performance than their alternative solutions,
 //  even if they're a little stranger to read.
-//  
+//
 //  Apr 02, 2014 Add Maximum number of smilies with SetMaxSmileys()
 //
 //-----------------------------------------------------------------------------
@@ -163,166 +163,232 @@ class BBCode
 		$this->pre_trim = $trim;
 	}
 
+
+
 	function GetPreTrim()
 	{
 		return $this->pre_trim;
 	}
+
+
 
 	function SetPostTrim( $trim = "a" )
 	{
 		$this->post_trim = $trim;
 	}
 
+
+
 	function GetPostTrim()
 	{
 		return $this->post_trim;
 	}
+
+
 
 	function SetRoot( $class = 'block' )
 	{
 		$this->root_class = $class;
 	}
 
+
+
 	function SetRootInline()
 	{
 		$this->root_class = 'inline';
 	}
+
+
 
 	function SetRootBlock()
 	{
 		$this->root_class = 'block';
 	}
 
+
+
 	function GetRoot()
 	{
 		return $this->root_class;
 	}
+
+
 
 	function SetDebug( $enable = true )
 	{
 		$this->debug = $enable;
 	}
 
+
+
 	function GetDebug()
 	{
 		return $this->debug;
 	}
+
+
 
 	function SetAllowAmpersand( $enable = true )
 	{
 		$this->allow_ampersand = $enable;
 	}
 
+
+
 	function GetAllowAmpersand()
 	{
 		return $this->allow_ampersand;
 	}
+
+
 
 	function SetTagMarker( $marker = '[' )
 	{
 		$this->tag_marker = $marker;
 	}
 
+
+
 	function GetTagMarker()
 	{
 		return $this->tag_marker;
 	}
+
+
 
 	function SetIgnoreNewlines( $ignore = true )
 	{
 		$this->ignore_newlines = $ignore;
 	}
 
+
+
 	function GetIgnoreNewlines()
 	{
 		return $this->ignore_newlines;
 	}
+
+
 
 	function SetLimit( $limit = 0 )
 	{
 		$this->output_limit = $limit;
 	}
 
+
+
 	function GetLimit()
 	{
 		return $this->output_limit;
 	}
+
+
 
 	function SetLimitTail( $tail = "..." )
 	{
 		$this->limit_tail = $tail;
 	}
 
+
+
 	function GetLimitTail()
 	{
 		return $this->limit_tail;
 	}
+
+
 
 	function SetLimitPrecision( $prec = 0.15 )
 	{
 		$this->limit_precision = $prec;
 	}
 
+
+
 	function GetLimitPrecision()
 	{
 		return $this->limit_precision;
 	}
+
+
 
 	function WasLimited()
 	{
 		return $this->was_limited;
 	}
 
+
+
 	function SetPlainMode( $enable = true )
 	{
 		$this->plain_mode = $enable;
 	}
+
+
 
 	function GetPlainMode()
 	{
 		return $this->plain_mode;
 	}
 
+
+
 	function SetDetectURLs( $enable = true )
 	{
 		$this->detect_urls = $enable;
 	}
+
+
 
 	function GetDetectURLs()
 	{
 		return $this->detect_urls;
 	}
 
+
+
 	function SetURLPattern( $pattern )
 	{
 		$this->url_pattern = $pattern;
 	}
+
+
 
 	function GetURLPattern()
 	{
 		return $this->url_pattern;
 	}
 
+
+
 	function SetURLTargetable( $enable )
 	{
 		$this->url_targetable = $enable;
 	}
+
+
 
 	function GetURLTargetable()
 	{
 		return $this->url_targetable;
 	}
 
+
+
 	function SetURLTarget( $target )
 	{
 		$this->url_target = $target;
 	}
 
+
+
 	function GetURLTarget()
 	{
 		return $this->url_target;
 	}
-	
+
+
+
 	//-----------------------------------------------------------------------------
 	// Rule-management:  You can add your own custom tag rules, or use the defaults.
 	// These are basically getter/setter functions that exist for convenience.
@@ -332,25 +398,35 @@ class BBCode
 		$this->tag_rules[ $name ] = $rule;
 	}
 
+
+
 	function RemoveRule( $name )
 	{
 		unset( $this->tag_rules[ $name ] );
 	}
+
+
 
 	function GetRule( $name )
 	{
 		return isset( $this->tag_rules[ $name ] ) ? $this->tag_rules[ $name ] : false;
 	}
 
+
+
 	function ClearRules()
 	{
 		$this->tag_rules = Array( );
 	}
 
+
+
 	function GetDefaultRule( $name )
 	{
 		return isset( $this->defaults->default_tag_rules[ $name ] ) ? $this->defaults->default_tag_rules[ $name ] : false;
 	}
+
+
 
 	function SetDefaultRule( $name )
 	{
@@ -360,10 +436,14 @@ class BBCode
 			$this->RemoveRule( $name );
 	}
 
+
+
 	function GetDefaultRules()
 	{
 		return $this->defaults->default_tag_rules;
 	}
+
+
 
 	function SetDefaultRules()
 	{
@@ -379,55 +459,77 @@ class BBCode
 		$this->wiki_url = $url;
 	}
 
+
+
 	function GetWikiURL( $url )
 	{
 		return $this->wiki_url;
 	}
+
+
 
 	function GetDefaultWikiURL()
 	{
 		return '/?page=';
 	}
 
+
+
 	function SetLocalImgDir( $path )
 	{
 		$this->local_img_dir = $path;
 	}
+
+
 
 	function GetLocalImgDir()
 	{
 		return $this->local_img_dir;
 	}
 
+
+
 	function GetDefaultLocalImgDir()
 	{
 		return "img";
 	}
+
+
 
 	function SetLocalImgURL( $path )
 	{
 		$this->local_img_url = $path;
 	}
 
+
+
 	function GetLocalImgURL()
 	{
 		return $this->local_img_url;
 	}
+
+
 
 	function GetDefaultLocalImgURL()
 	{
 		return "img";
 	}
 
+
+
 	function SetRuleHTML( $html )
 	{
 		$this->rule_html = $html;
 	}
 
+
+
 	function GetRuleHTML()
 	{
 		return $this->rule_html;
 	}
+
+
 
 	function GetDefaultRuleHTML()
 	{
@@ -445,16 +547,22 @@ class BBCode
 		$this->smiley_regex = false;
 	}
 
+
+
 	function RemoveSmiley( $code )
 	{
 		unset( $this->smileys[ $code ] );
 		$this->smiley_regex = false;
 	}
 
+
+
 	function GetSmiley( $code )
 	{
 		return isset( $this->smileys[ $code ] ) ? $this->smileys[ $code ] : false;
 	}
+
+
 
 	function ClearSmileys()
 	{
@@ -462,10 +570,14 @@ class BBCode
 		$this->smiley_regex = false;
 	}
 
+
+
 	function GetDefaultSmiley( $code )
 	{
 		return isset( $this->defaults->default_smileys[ $code ] ) ? $this->defaults->default_smileys[ $code ] : false;
 	}
+
+
 
 	function SetDefaultSmiley( $code )
 	{
@@ -473,10 +585,14 @@ class BBCode
 		$this->smiley_regex = false;
 	}
 
+
+
 	function GetDefaultSmileys()
 	{
 		return $this->defaults->default_smileys;
 	}
+
+
 
 	function SetDefaultSmileys()
 	{
@@ -484,55 +600,75 @@ class BBCode
 		$this->smiley_regex = false;
 	}
 
+
+
 	function SetSmileyDir( $path )
 	{
 		$this->smiley_dir = $path;
 	}
+
+
 
 	function GetSmileyDir()
 	{
 		return $this->smiley_dir;
 	}
 
+
+
 	function GetDefaultSmileyDir()
 	{
 		return "smileys";
 	}
+
+
 
 	function SetSmileyURL( $path )
 	{
 		$this->smiley_url = $path;
 	}
 
+
+
 	function GetSmileyURL()
 	{
 		return $this->smiley_url;
 	}
+
+
 
 	function GetDefaultSmileyURL()
 	{
 		return "smileys";
 	}
 
+
+
 	function SetEnableSmileys( $enable = true )
 	{
 		$this->enable_smileys = $enable;
 	}
 
+
+
 	function GetEnableSmileys()
 	{
 		return $this->enable_smileys;
 	}
-	
+
+
+
 	function SetMaxSmileys( $count )
 	{
 		$this->max_smileys = (int) $count;
-		if ( $this->max_smileys < -1 ) 
+		if ( $this->max_smileys < -1 )
 		{
 			$this->max_smileys = -1;
 		}
 	}
-	
+
+
+
 	function GetMaxSmileys()
 	{
 		return $this->max_smileys;
@@ -548,6 +684,8 @@ class BBCode
 	{
 		return preg_replace( "/\\x0A|\\x0D|\\x0A\\x0D|\\x0D\\x0A/", "<br>\n", $string );
 	}
+
+
 
 	// This function comes straight from the PHP documentation on html_entity_decode,
 	// and performs exactly the same function.  Unlike html_entity_decode, it
@@ -569,6 +707,8 @@ class BBCode
 		return strtr( $string, $trans_tbl );
 	}
 
+
+
 	// This takes an arbitrary string and makes it a wiki-safe string:  It converts
 	// all characters to be within [a-zA-Z0-9'",.:_-] by converting everything else to
 	// _ characters, compacts multiple _ characters together, and trims initial and
@@ -580,18 +720,20 @@ class BBCode
 		return rawurlencode( str_replace( " ", "_", trim( preg_replace( "/[!?;@#\$%\\^&*<>=+`~\\x00-\\x20_-]+/", " ", $string ) ) ) );
 	}
 
+
+
 	// Returns true if the given string is a valid URL.  If $email_too is false,
 	// this checks for:
 	//
-		//    http :// domain [:port] [/] [any single-line string]
+	//    http :// domain [:port] [/] [any single-line string]
 	//    https :// domain [:port] [/] [any single-line string]
 	//    ftp :// domain [:port] [/] [any single-line string]
 	//
-		// If $email_too is true (the default), this also allows the mailto protocol:
+	// If $email_too is true (the default), this also allows the mailto protocol:
 	//
-		//    mailto : name @ domain
+	//    mailto : name @ domain
 	//
-		function IsValidURL( $string, $email_too = true )
+	function IsValidURL( $string, $email_too = true )
 	{
 		// Check for anything that uses http, https, or ftp, with the general
 		// structure being:  protocol :// domain [:port] [/] [any single-line string]
@@ -631,39 +773,17 @@ class BBCode
 		return false;
 	}
 
+
+
 	// Returns true if the given string is a valid e-mail address.  This allows
 	// everything that RFC821 allows, including e-mail addresses that make no sense.
 	function IsValidEmail( $string )
 	{
 		$validator = new BBCodeEmailAddressValidator;
 		return $validator->check_email_address( $string );
-		/*
-		  return preg_match("/^
-		  (?:
-		  [a-z0-9\\!\\#\\\$\\%\\&\\'\\*\\+\\/=\\?\\^_`\\{\\|\\}~-]+
-		  (?:\.[a-z0-9\\!\\#\\\$\\%\\&\\'\\*\\+\\/=\\?\\^_`\\{\\|\\}~-]+)*
-		  |
-		  \"(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]
-		  |\\\\[\\x01-\\x09\\x0B\\x0C\\x0E-\\x7F])*\"
-		  )
-		  @
-		  (?:
-		  (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+
-		  [a-z0-9]
-		  (?:[a-z0-9-]*[a-z0-9])?
-		  |
-		  \\[
-		  (?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}
-		  (?:
-		  25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:
-		  (?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21-\\x5A\\x53-\\x7F]
-		  |\\\\[\\x01-\\x09\\x0B\\x0C\\x0E-\\x7F])+
-		  )
-		  \\]
-		  )
-		  $/Dx", $string);
-		 */
 	}
+
+
 
 	// This function is used to wrap around calls to htmlspecialchars() for
 	// plain text so that you can add your own text-evaluation code if you want.
@@ -681,6 +801,8 @@ class BBCode
 		else
 			return str_replace( Array( '<', '>', '"' ), Array( '&lt;', '&gt;', '&quot;' ), $string );
 	}
+
+
 
 	// Go through a string containing plain text and do three things on it:
 	// Replace < and > and & and " with HTML-safe equivalents, and replace
@@ -737,6 +859,8 @@ class BBCode
 
 		return $output;
 	}
+
+
 
 	// Go through a string containing plain text and do two things on it:
 	// Replace < and > and & and " with HTML-safe equivalents, and replace
@@ -823,6 +947,8 @@ class BBCode
 		return $output;
 	}
 
+
+
 	function Internal_RebuildSmileys()
 	{
 		// Construct the $this->smiley_regex that can recognize all
@@ -844,27 +970,29 @@ class BBCode
 		BBCode_Debugger::debug( "<b>Internal_RebuildSmileys:</b> regex: <tt>" . htmlspecialchars( $this->smiley_regex ) . "</tt><br>\n" );
 	}
 
+
+
 	// Search through the input for URLs, or things that are URL-like.  We search
 	// for several possibilities here:
 	//
-		//   First format (HTTP/HTTPS/FTP):
+	//   First format (HTTP/HTTPS/FTP):
 	//      <"http:" or "https:" or "ftp:"> <optional "//"> <domain or IPv4 or IPv6> <optional tail>
 	//
-		//   Second format (implicit HTTP):
+	//   Second format (implicit HTTP):
 	//      <domain or IPv4> <optional tail>
 	//
-		//   Third format (e-mail):
+	//   Third format (e-mail):
 	//      <simple username> "@" <domain or IPv4>
 	//
-		// In short, we look for domains and protocols, and if we find them, we consume any paths
+	// In short, we look for domains and protocols, and if we find them, we consume any paths
 	// or parameters after them, stopping at the first whitespace.
 	//
-		// We use the same split-and-match technique used by the lexer and the smiley parser,
+	// We use the same split-and-match technique used by the lexer and the smiley parser,
 	// since it's the fastest way to perform tokenization in PHP.
 	//
-		// Once we find the URL, we convert it according to the rule given in $this->url_pattern.
+	// Once we find the URL, we convert it according to the rule given in $this->url_pattern.
 	//
-		// Note that the input string is plain text, not HTML or BBCode.  The return value
+	// Note that the input string is plain text, not HTML or BBCode.  The return value
 	// must be an array of alternating pairs of plain text (even indexes) and HTML (odd indexes).
 	function Internal_AutoDetectURLs( $string )
 	{
@@ -968,32 +1096,34 @@ class BBCode
 		return $output;
 	}
 
+
+
 	// Fill an HTML template using variable inserts, which look like this:
 	//    {$variable}   or   {$variable/flags}   or even   {$myarray.george.father/flags}
 	//
-		// You may use any variable provided in the parameter array; and you may use the
+	// You may use any variable provided in the parameter array; and you may use the
 	// special dot (.) operator to access members of array variables or of object
 	// variables.
 	//
-		// You may add formatting flags to the variable to control how the text parameters
+	// You may add formatting flags to the variable to control how the text parameters
 	// are cleaned up.  For example, {$variable/u} causes the variable to be urlencoded().
 	// The available flags are:
 	//
-		//   v - Verbatim.  Do not apply any formatting to the variable; use its exact text,
+	//   v - Verbatim.  Do not apply any formatting to the variable; use its exact text,
 	//        however the user provided it.  This overrides all other flags.
 	//
-		//   b - Apply basename().
+	//   b - Apply basename().
 	//   n - Apply nl2br().
 	//   t - Trim.  This causes all initial and trailing whitespace to be trimmed (removed).
 	//   w - Clean up whitespace.  This causes all non-newline whitespace, such as
 	//        control codes and tabs, to be collapsed into individual space characters.
 	//
-		//   e - Apply HTMLEncode().
+	//   e - Apply HTMLEncode().
 	//   h - Apply htmlspecialchars().
 	//   k - Apply Wikify().
 	//   u - Apply urlencode().
 	//
-		// Note that only one of the e, h, k, or u "formatting flags" may be specified;
+	// Note that only one of the e, h, k, or u "formatting flags" may be specified;
 	// these flags are mutually-exclusive.
 	function FillTemplate( $template, $insert_array, $default_array = Array( ) )
 	{
@@ -1101,6 +1231,8 @@ class BBCode
 		return implode( "", $result );
 	}
 
+
+
 	//-----------------------------------------------------------------------------
 	//  Stack and output-management (internal).
 	// Collect a series of text strings from a token stack and return them as a
@@ -1122,6 +1254,8 @@ class BBCode
 		return $output;
 	}
 
+
+
 	function Internal_CollectTextReverse( $array, $start = 0, $end = 0 )
 	{
 		global $BBCode_Profiler;
@@ -1137,6 +1271,8 @@ class BBCode
 
 		return $output;
 	}
+
+
 
 	// Output everything on the stack from $pos to the top, inclusive, as
 	// plain text, and return it.  This is a little more complicated than
@@ -1254,6 +1390,8 @@ class BBCode
 		return $output;
 	}
 
+
+
 	// We're transitioning into a class that's not allowed inside the current one
 	// (like they tried to put a [center] tag inside a [b] tag), so we need to
 	// unwind the stack, outputting content until we're inside a valid state again.
@@ -1265,7 +1403,7 @@ class BBCode
 	// will be the same as that of the stack element before it (or root_class if there
 	// is no element before it).
 	//
-		// This returns true if the stack could be rewound to a safe state, or false
+	// This returns true if the stack could be rewound to a safe state, or false
 	// if no such "safe state" existed.
 	function Internal_RewindToClass( $class_list )
 	{
@@ -1312,6 +1450,8 @@ class BBCode
 
 		return true;
 	}
+
+
 
 	// We've found an end tag with the given name, so walk backward until we
 	// find the start tag, and then output the contents.
@@ -1405,6 +1545,8 @@ class BBCode
 		return $output;
 	}
 
+
+
 	// Recompute the current class, based on the class of the stack's top element.
 	function Internal_ComputeCurrentClass()
 	{
@@ -1418,6 +1560,8 @@ class BBCode
 				. htmlspecialchars( $this->current_class ) . "</tt>\"<br>\n" );
 		}
 	}
+
+
 
 	// Given a stack of tokens in $array, write it to a string (possibly with HTML
 	// color and style encodings for readability, if $raw is false).
@@ -1454,6 +1598,8 @@ class BBCode
 			$string .= "</span>";
 		return $string;
 	}
+
+
 
 	//-----------------------------------------------------------------------------
 	//  Whitespace cleanup routines (internal).
@@ -1504,6 +1650,8 @@ class BBCode
 			$this->Internal_ComputeCurrentClass();
 		}
 	}
+
+
 
 	// Read tokens from the input, and remove whitespace/newline tokens from the input
 	// according to the rules in the given pattern.
@@ -1563,6 +1711,8 @@ class BBCode
 			BBCode_Debugger::debug( "<b>Internal_CleanupWSByEatingInput:</b> input pointer is now at {$this->lexer->ptr}<br>\n" );
 	}
 
+
+
 	// Read tokens from the given position in the stack, going forward as we match
 	// the rules in the given pattern.  Returns the first position *after* the pattern.
 	function Internal_CleanupWSByIteratingPointer( $pattern, $pos, $array )
@@ -1603,6 +1753,8 @@ class BBCode
 		return $pos;
 	}
 
+
+
 	// We have a string that's too long, so chop it off at a suitable break so that it's
 	// no longer than $limit characters, if at all possible (if there's nowhere to break
 	// before that, we just chop at $limit).
@@ -1627,6 +1779,8 @@ class BBCode
 		return $output;
 	}
 
+
+
 	// If we've reached the text limit, clean up the stack, push the limit tail,
 	// set the we-hit-the-limit flag, and return.
 	function Internal_DoLimit()
@@ -1650,25 +1804,25 @@ class BBCode
 	//  Tag evaluation logic (internal).
 	// Process a tag:
 	//
-		//   $action is one of BBCODE_CHECK or BBCODE_OUTPUT.  During BBCODE_CHECK, $contents
+	//   $action is one of BBCODE_CHECK or BBCODE_OUTPUT.  During BBCODE_CHECK, $contents
 	//        will *always* be the empty string, and this function should return true if
 	//        the tag is legal based on the available information; or it should return
 	//        false if the tag is illegal.  During BBCODE_OUTPUT, $contents will always
 	//        be valid, and this function should return HTML.
 	//
-		//   $tag_name is the name of the tag being processed.
+	//   $tag_name is the name of the tag being processed.
 	//
-		//   $default_value is the default value given; for example, in [url=foo], it's "foo".
+	//   $default_value is the default value given; for example, in [url=foo], it's "foo".
 	//        This value has NOT been passed through htmlspecialchars().
 	//
-		//   $params is an array of key => value parameters associated with the tag; for example,
+	//   $params is an array of key => value parameters associated with the tag; for example,
 	//        in [smiley src=smile alt=:-)], it's Array('src' => "smile", 'alt' => ":-)").
 	//        These keys and values have NOT beel passed through htmlspecialchars().
 	//
-		//   $contents is the body of the tag during BBCODE_OUTPUT.  For example, in
+	//   $contents is the body of the tag during BBCODE_OUTPUT.  For example, in
 	//        [b]Hello[/b], it's "Hello".  THIS VALUE IS ALWAYS HTML, not BBCode.
 	//
-		// For BBCODE_CHECK, this must return true (if the tag definition is valid) or false
+	// For BBCODE_CHECK, this must return true (if the tag definition is valid) or false
 	// (if the tag definition is not valid); for BBCODE_OUTPUT, this function must return
 	// HTML output.
 	function DoTag( $action, $tag_name, $default_value, $params, $contents )
@@ -1877,10 +2031,12 @@ class BBCode
 		}
 	}
 
+
+
 	// Format an enhanced tag, which is like a simple tag but uses a short HTML template
 	// for its formatting instead.
 	//
-		// The variables you may use are the parameters of the tag, and '_default' for its
+	// The variables you may use are the parameters of the tag, and '_default' for its
 	// default value, '_name' for its name, and '_content' for its contents (body).
 	// Note that in enhanced mode, the tag parameters' keys must match [a-zA-Z0-9_:-]+,
 	// that is, alphanumeric, with underscore, colon, or hyphen.
@@ -1916,6 +2072,8 @@ class BBCode
 		}
 	}
 
+
+
 	//-----------------------------------------------------------------------------
 	//  Parser token-processing routines (internal).
 	// If an end-tag is required/optional but missing, we simulate it here so that the
@@ -1938,6 +2096,8 @@ class BBCode
 		}
 		$params[ '_endtag' ] = $this->tag_marker . '/' . $params[ '_name' ] . $tail_marker;
 	}
+
+
 
 	// Process an isolated tag, a tag that is not allowed to have an end tag.
 	function Internal_ProcessIsolatedTag( $tag_name, $tag_params, $tag_rule )
@@ -1983,6 +2143,8 @@ class BBCode
 			BBCODE_STACK_CLASS => $this->current_class,
 		);
 	}
+
+
 
 	// Process a verbatim tag, a tag whose contents (body) must not be processed at all.
 	function Internal_ProcessVerbatimTag( $tag_name, $tag_params, $tag_rule )
@@ -2145,6 +2307,8 @@ class BBCode
 		);
 	}
 
+
+
 	// Called when the parser has read a BBCODE_TAG token.
 	function Internal_ParseStartTagToken()
 	{
@@ -2288,6 +2452,8 @@ class BBCode
 			$this->start_tags[ $tag_name ][ ] = count( $this->stack ) - 1;
 	}
 
+
+
 	// Called when the parser has read a BBCODE_ENDTAG token.
 	function Internal_ParseEndTagToken()
 	{
@@ -2331,6 +2497,8 @@ class BBCode
 			return;
 		}
 
+
+
 		// Found a start tag for this, so pop it off the stack, then process the
 		// tag, and push the result back onto the stack as plain HTML.
 		// We don't need to run a BBCODE_CHECK on the start tag, because it was already
@@ -2373,6 +2541,8 @@ class BBCode
 			BBCODE_STACK_CLASS => $this->current_class,
 		);
 	}
+
+
 
 	//-----------------------------------------------------------------------------
 	//  Core parser.  This is where all the magic begins and ends.
@@ -2649,13 +2819,15 @@ class BBCode
 
 		if ( $this->debug )
 		{
-			BBCode_Debugger::debug( "<b>Parse:</b> return: <tt>" . htmlspecialchars( addcslashes( $result, "\x00..\x1F\\\"'" ) )
-				. "</tt><br>\n" );
+			BBCode_Debugger::debug( 
+				"<b>Parse:</b> return: <tt>" . 
+				htmlspecialchars( addcslashes( $result, "\x00..\x1F\\\"'" ) ) .
+				"</tt><br>\n" 
+			);
 		}
 
 		$BBCode_Profiler->End( '_Parse' );
 
 		return $result;
 	}
-
 }
