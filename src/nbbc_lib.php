@@ -303,6 +303,12 @@ class BBCodeLibrary
 			'plain_start' => "\n",
 			'plain_end' => "\n",
 		),
+		'rtl' => Array(
+			'simple_start' => '<div style="direction:rtl;">',
+			'simple_end' => '</div>',
+			'class' => 'inline',
+			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
+		),
 		'indent' => Array(
 			'simple_start' => "\n<div class=\"bbcode_indent\" style=\"margin-left:4em\">\n",
 			'simple_end' => "\n</div>\n",
