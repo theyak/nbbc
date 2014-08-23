@@ -2170,7 +2170,7 @@ class BBCode
 		$this->lexer->verbatim = true;
 		while ( ($token_type = $this->lexer->NextToken()) != BBCODE_EOI )
 		{
-			if ( $this->lexer->text == $end_tag )
+			if ( strcasecmp( $this->lexer->text, $end_tag ) === 0 )
 			{
 				// Found the end tag, so we're done.
 				$end_tag_params = $this->lexer->tag;
