@@ -2342,6 +2342,27 @@ class BBCode
 			);
 			return;
 		}
+		
+		// Check for tags that do not allow params
+		if ( isset( $this->tag_rules[ $tag_name ][ 'allow_params' ] ) )
+		{
+			if ( $this->tag_rules[ $tag_name ][ 'allow_params' ] === false )
+			{
+				if ( sizeof( $tag_params[ '_params' ] ) > 1 )
+				{
+					// If there is no such tag with this name, then just push the text as
+					// though it was plain text.
+					$this->stack[ ] = Array(
+						BBCODE_STACK_TOKEN => BBCODE_TEXT,
+						BBCODE_STACK_TEXT => $this->FixupOutput( $this->lexer->text ),
+						BBCODE_STACK_TAG => false,
+						BBCODE_STACK_CLASS => $this->current_class,
+					);
+					return;
+				}
+			}
+		}
+
 		$tag_rule = $this->tag_rules[ $tag_name ];
 
 		// We've got a known tag.  See if it's valid inside this class; for example,
