@@ -129,6 +129,7 @@ class BBCodeLibrary
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
 			'plain_start' => "<b>",
 			'plain_end' => "</b>",
+			'allow_params' => false,			
 		),
 		'i' => Array(
 			'simple_start' => "<i>",
@@ -137,6 +138,7 @@ class BBCodeLibrary
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
 			'plain_start' => "<i>",
 			'plain_end' => "</i>",
+			'allow_params' => false,			
 		),
 		'u' => Array(
 			'simple_start' => "<u>",
@@ -145,6 +147,7 @@ class BBCodeLibrary
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
 			'plain_start' => "<u>",
 			'plain_end' => "</u>",
+			'allow_params' => false,			
 		),
 		's' => Array(
 			'simple_start' => "<strike>",
@@ -153,6 +156,7 @@ class BBCodeLibrary
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
 			'plain_start' => "<i>",
 			'plain_end' => "</i>",
+			'allow_params' => false,			
 		),
 		'font' => Array(
 			'mode' => BBCODE_MODE_LIBRARY,
@@ -180,12 +184,14 @@ class BBCodeLibrary
 			'simple_end' => "</sup>",
 			'class' => 'inline',
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
+			'allow_params' => false,			
 		),
 		'sub' => Array(
 			'simple_start' => "<sub>",
 			'simple_end' => "</sub>",
 			'class' => 'inline',
 			'allow_in' => Array( 'listitem', 'block', 'columns', 'inline', 'link' ),
+			'allow_params' => false,			
 		),
 		'spoiler' => Array(
 			'simple_start' => "<span class=\"bbcode_spoiler\">",
