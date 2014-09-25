@@ -113,7 +113,7 @@
 				// Match wiki-links, which are of the form [[...]] or [[...|...]].  Unlike
 				// tags, wiki-links treat " and ' marks as normal input characters; but they
 				// still may not contain newlines.
-				. "| {$b}{$b} (?: [^{$e}\\r\\n] | {$e}[^{$e}\\r\\n] )* {$e}{$e}"
+				. "| {$b}{$b} (?: [^{$e}\\r\\n] | {$e}[^{$e}\\r\\n] ){1,256} {$e}{$e}"
 
 				// Match single-line comments, which start with [-- or [' or [rem .
 				. "| {$b} (?: -- | ' ) (?: [^{$e}\\n\\r]* ) {$e}"
