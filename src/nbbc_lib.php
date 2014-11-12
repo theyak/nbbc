@@ -712,6 +712,11 @@ class BBCodeLibrary
 					$title = "<a href=\"" . htmlspecialchars( $params[ 'url' ] ) . "\">" . $title . "</a>";
 			}
 		}
+		
+		// Trim content
+		$content = preg_replace('/^\s*(?:<br\s*\/?>\s*)*/i', '', $content);
+		$content = preg_replace('/\s*(?:<br\s*\/?>\s*)*+$/i', '', $content);
+		
 		else if ( !is_string( $default ) )
 			$title = "Quote:";
 		else
