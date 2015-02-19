@@ -2173,7 +2173,7 @@ class BBCode
 			if ( strcasecmp( $this->lexer->text, $end_tag ) === 0 )
 			{
 				// Found the end tag, so we're done.
-				$end_tag_params = $this->lexer->tag;
+				$end_tag_params = $end_tag;
 				break;
 			}
 			if ( $this->debug )
