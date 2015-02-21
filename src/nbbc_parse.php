@@ -2223,6 +2223,11 @@ class BBCode
 					. " and push start tag as text after fixup.<br>\n" );
 			}
 			$this->lexer->RestoreState( $state );
+			
+			// Rewind the stack too, since right now we've put all the stuff
+			// since the code tag on, and it should be taken off.			
+			$this->stack = array_slice($this->stack, 0, $start);
+			
 			$this->stack[ ] = Array(
 				BBCODE_STACK_TOKEN => BBCODE_TEXT,
 				BBCODE_STACK_TEXT => $this->FixupOutput( $this->lexer->text ),
