@@ -1002,7 +1002,7 @@ class BBCode
 		$output = preg_split( "/( (?:
 					(?:https?|ftp) : \\/*
 					(?:
-						(?: (?: [a-zA-Z0-9-]{2,} \\. )+
+						(?: (?: [a-zA-Z0-9-]{1,} \\. )+
 							(?: arpa | com | org | net | edu | gov | mil | int | [a-z]{2}
 								| aero | biz | coop | info | museum | name | pro
 								| example | invalid | localhost | test | local | onion | swift ) )
