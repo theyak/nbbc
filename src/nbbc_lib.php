@@ -616,6 +616,9 @@ class BBCodeLibrary
 			$title = trim( $default );
 		}
 		
+		// fix for mediawiki page names which also hopefully fixes xss
+		$title = str_replace( ' ', '_', $title );
+		
 		return "<a href=\"{$bbcode->wiki_url}$name\" class=\"bbcode_wiki\">"
 			. htmlspecialchars( $title ) . "</a>";
 	}
