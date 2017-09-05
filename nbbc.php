@@ -785,6 +785,7 @@ if ($action == BBCODE_CHECK)
 return strlen($name) > 0;
 $title = trim(@$params['title']);
 if (strlen($title) <= 0) $title = trim($default);
+$title = str_replace(' ', '_', $title);
 return "<a href=\"{$bbcode->wiki_url}$name\" class=\"bbcode_wiki\">"
 . htmlspecialchars($title) . "</a>";
 }
